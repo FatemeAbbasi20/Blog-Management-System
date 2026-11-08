@@ -1,0 +1,47 @@
+﻿@using CodeYad_Blog_CoreLayer.DTOs.Posts
+@using CodeYad_Blog_CoreLayer.Utilities
+@model List<PostDto>
+@foreach (var item in Model)
+{
+    <div class="col-md-6">
+        <article class="entry card">
+            <div class="entry__img-holder card__img-holder">
+                <a asp-page="Post" asp-route-Slug="@item.slug">
+                    <div class="thumb-container thumb-70">
+                        <img data-src="@Directiones.GetPostImage(item.ImageName)" src="@Directiones.GetPostImage(item.ImageName)" class="entry__img lazyload" alt="@item.Title" />
+                    </div>
+                </a>
+                @if (item.SubCategory != null)
+                {
+                    <a asp-page="Search" asp-route-categorySlug="@item.SubCategory.Slug" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--violet">@item.SubCategory.Title</a>
+                }
+                else
+                {
+                    <a asp-page="Search" asp-route-categorySlug="@item.Category.Slug" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--violet">@item.Category.Title</a>
+                }
+            </div>
+
+            <div class="entry__body card__body">
+                <div class="entry__header">
+
+                    <h2 class="entry__title">
+                        <a asp-Page="Post" asp-route-Slug="@item.slug">@item.Title</a>
+                    </h2>
+                    <ul class="entry__meta">
+                        <li class="entry__meta-author">
+                            <span>نویسنده:</span>
+                            <a href="#">@item.UserFullName</a>
+                        </li>
+                        <li class="entry__meta-date">
+                            @item.CreationDate.ToShortDateString()
+                        </li>
+                    </ul>
+                </div>
+                <div class="entry__excerpt">
+                    <p>@Html.Raw(item.Description)</p>
+                    @* <p>عد از اعلام تصمیم سامسونگ برای به عقب انداختن عرضه گلکسی فولد، شایعاتی مبنی بر احتمال تاخیر در عرضه ...</p> *@
+                </div>
+            </div>
+        </article>
+    </div>
+}

@@ -1,0 +1,96 @@
+﻿@using CodeYad_Blog_CoreLayer.Utilities
+@model CodeYad_Blog_CoreLayer.DTOs.Posts.PostFilterDto
+
+@{
+    ViewData["Title"] = "مدیریت مقالات";
+    ViewData["Selected"] = "posts";
+    var Counter = 1;
+}
+
+<section class="content-header">
+    <h1>
+        @ViewData["Title"]
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <a asp-area=admin asp-controller="Post" asp-action="Index">
+                <i class="fa fa-dashboard"></i> مقالات
+            </a>
+        </li>
+
+        <li class="active">@ViewData["Title"]</li>
+    </ol>
+</section>
+
+<section class="content">
+  <div class="box box-danger">
+      <div class="box box-body">
+          <form>
+              <div class="box box-header"><button type="submit" class="btn btn-info pull-left">فیلتر</button></div>
+              <div class="row">
+                <div class="col-md-6 form-group">
+                <input class="form-control" placeholder="عنوان"  type="text"  name="title" value="@Model.FilterParams.Title"  />
+                </div>
+                 <div class="col-md-6 form-group">
+                        <input class="form-control" placeholder="slug" type="text" name="categorySlug" value="@Model.FilterParams.CategorySlug" />
+               </div>
+              </div>
+          </form>
+      </div>
+  </div>
+
+
+
+    <a class="btn btn-success" style="margin:5px" asp-area="admin" asp-controller="Post" asp-action="Add"> افزودن مقاله  </a>
+    <div class="box">
+        <div class="box box-primary">
+            <div class="box-body p-0">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>عکس </th>
+                            <th>عنوان </th>
+                            <th> slug</th>
+                            <th>گروه</th>
+                            <th>پست ویژه؟</th>
+                            <th> عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Posts)
+                        {
+                            <tr>
+                                <td>@Counter</td>
+                                <td> <img style="max-width: 150px" src="@Directiones.GetPostImage(item.ImageName)"> </td>
+                                <td>@item.Title</td>
+                                <td>@item.slug </td>
+                                <td>@item.Category.Title</td>
+                                <td>
+                                    @if (item.IsSpecial)
+                                    {
+                                        <i class="fa fa-check text-success"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-close text-danger"></i>
+                                    }
+                                </td>
+                                <td>
+                                    <a class="btn btn-info btn-sm" asp-area="admin" asp-controller="Post" asp-action="Edit" asp-route-id="@item.PostId"> ویرایش </a>
+                   
+                                </td>
+                            </tr>
+                            Counter += 1;
+                        }
+         
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        <partial name="_Pagination" model="Model" />
+           
+      
+
+    </div>
+</section>

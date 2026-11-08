@@ -1,0 +1,22 @@
+﻿   <!-- Pagination -->
+@if (Model.Filter.PageCount > 1)
+{
+    <nav class="pagination">
+        @for (var i = 1; i <= Model.Filter.PageCount; i++)
+        {
+            @if (i == Model.Filter.FilterParams.PageId)
+            {
+                <span class="pagination__page pagination__page--current">@i</span>
+            }
+            else
+            {
+                <a href="#" onclick="ChangePage(@i)" class="pagination__page pagination__page--current"></a>
+            }
+            @if (Model.Filter.PageCount > Model.Filter.FilterParams.PageId)
+            {
+                <a href="#" onclick="ChangePage(@Model.Filter.FilterParams.PageId+1)" class="pagination__page pagination__icon pagination__page--next"><i class="ui-arrow-left"></i></a>
+            }
+
+        }
+    </nav>
+}

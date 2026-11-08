@@ -1,0 +1,45 @@
+﻿<aside class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+            @* <li class="active treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>داشبرد</span>
+                    <span class="pull-left-container">
+                        <i class="fa fa-angle-right pull-left"></i>
+                    </span>
+                </a>
+            </li> *@
+            @{
+                var Selected = ViewData["Selected"]?.ToString()?.ToLower();
+            }
+            <li class="@(Selected=="index" ? "active" : null)">
+                <a asp-area="admin" asp-controller="home" asp-action="index">
+                    <i class="fa fa-dashboard"></i> <span>داشبرد</span>
+                    
+                </a>
+            </li>
+            <li class="@(Selected == "posts" ? "active" : null)">
+                <a asp-area="admin" asp-controller="Post" asp-action="index">
+                    <i class="fa fa-dashboard"></i> <span>مدیریت مقالات </span>
+
+                </a>
+            </li>
+
+            <li class="@(Selected == "category" ? "active" : null)">
+                <a asp-area="admin" asp-controller="category" asp-action="index">
+                    <i class="fa fa-th"></i> <span>دسته بندی ها</span>
+                    @* <span class="pull-left-container">
+                        <small class="label pull-left bg-green">جدید</small>
+                    </span> *@
+                </a>
+            </li>
+            <li class="@(Selected == "users" ? "active" : null)">
+                <a asp-area="admin" asp-controller="User" asp-action="index">
+                    <i class="fa fa-dashboard"></i> <span>مدیریت کاربران </span>
+
+                </a>
+            </li>
+
+        </ul>
+        </section>
+</aside>

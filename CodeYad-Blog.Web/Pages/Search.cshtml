@@ -1,0 +1,68 @@
+﻿@page "{handler?}"
+@using CodeYad_Blog_CoreLayer.DTOs.Categories
+@using CodeYad_Blog_CoreLayer.Services.Categories
+@using CodeYad_Blog_CoreLayer.Utilities
+@model Codeyad_Blog.Web.Pages.Shared.SearchModel
+@inject ICategoryService _categoryService;
+@{
+    CategoryDto category = null;
+    var Search = "";
+}
+@if (!string.IsNullOrWhiteSpace(Model.Filter.FilterParams.CategorySlug))
+{
+    category = _categoryService.GetCategoryBy(Model.Filter.FilterParams.CategorySlug);
+    if (category != null)
+    {
+         Search = category.Title;
+    }
+    else
+    {
+         Search = Model.Filter.FilterParams.Title?? "مقالات سایت";
+    }
+    ViewData["Title"] = Search;
+}
+@if (category != null)
+{
+    @section MetaTags {
+        <meta property="og:type" content="article" />
+        <meta name="description" content="@category.MetaDescription" />
+        <meta name="og:description" content="@category.MetaDescription" />
+        <meta name="twitter:description" content="@category.MetaDescription" />
+        <meta name="keywords" content="@category.MetaTag" />
+    }
+}
+<div class="main-container container pt-40" id="main-container">
+    <div class="row">
+        <div class="col-lg-8 blog__content mb-72">
+            @if(Search!=null){
+            <h1 class="page-title">نتایج جستجو برای: @Search</h1>
+            }
+            <div id="ajaxSearch">
+            <partial name="Shared/_SearchView" model="Model.Filter" />
+            </div>
+        </div>
+        <aside class="col-lg-4 sidebar sidebar--right" id="PopularPosts"></aside>
+    </div>
+</div>
+@section Scripts{(<script>
+function ajaxPagination(pageId){
+const params=new URLSearchParams(window.location.search);
+var q=""; var categorySlug="";
+if(params.has('categorySlug'))
+{
+categorySlug= params.get('categorySlug');
+}
+if(params.has('q')){
+   q= params.get('q');
+}
+ $.ajax({url:`/search/Pagination?pageId=${pageId}&q=${q}&categorySlug=${categorySlug}`,
+ type:"get",
+ beforeSend:function(){
+  $(".loading").show();},
+  complete:function(){
+      $(".loading").hide();}
+}).done(function(data){
+    $("#ajaxSearch").html(data);
+});
+}
+</script>}

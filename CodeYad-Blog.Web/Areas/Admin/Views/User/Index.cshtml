@@ -1,0 +1,62 @@
+﻿@using CodeYad_Blog_CoreLayer.DTOs.Users
+@model UserFilterDto
+
+@{
+    ViewData["Title"] = "مدیریت کاربران";
+    ViewData["Selected"] = "users";
+    var Counter = 1;
+}
+
+<section class="content-header">
+    <h1>
+        @ViewData["Title"]
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <a asp-area=admin asp-controller="User" asp-action="Index">
+                <i class="fa fa-dashboard"></i> کاربران
+            </a>
+        </li>
+
+        <li class="active">@ViewData["Title"]</li>
+    </ol>
+</section>
+  <section class="content">
+        <div class="box box-primary">
+            <div class="box-body p-0">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>نام کاربری </th>
+                            <th>نام و نام خانوادگی </th>
+                            <th> نقش</th>
+                            <th> عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Users)
+                        {
+                            <tr>
+                                <td>@Counter</td>
+                                <td> @item.UserName </td>
+                                <td>@item.Fullname</td>
+                                <td>@item.Role </td>
+                                <td>
+                               <Open-Modal
+                                 title="ویرایش کاربر"
+                                   url="@Url.Action("ShowEditModel","User",new{userId=@item.UserId})">
+                                   ویرایش
+                               </Open-Modal>
+                                </td>
+                            </tr>
+                            Counter += 1;
+                        }
+         
+                    </tbody>
+                </table>
+           </div>
+           <partial name="_Pagination" model="Model"/>
+        </div>
+            </section>
+@* <a onclick="OpenModal(`/admin/User/ShowEditModel?userId=${@item.UserId}`,'default-modal','ویرایش کاربر')" class="btn btn-primary" href="#"> ویرایش </a> *@

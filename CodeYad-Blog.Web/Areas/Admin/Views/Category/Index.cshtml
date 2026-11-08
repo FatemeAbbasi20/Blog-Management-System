@@ -1,0 +1,68 @@
+﻿@model List<CodeYad_Blog_CoreLayer.DTOs.Categories.CategoryDto>
+@{ViewData["Title"] = "دسته بندی ها";
+ViewData["Selected"]="Category";
+}
+@{var Counter=1;}
+    <section class="content-header">
+    <h1>
+       @ViewData["Title"]
+    </h1>
+    <ol class="breadcrumb">
+        <li><a asp-area=admin asp-controller="Category" asp-action="Index">
+            <i class="fa fa-dashboard"></i> خانه</a></li>
+      
+        <li class="active">@ViewData["Title"]</li>
+    </ol>
+</section>
+
+<section class="content">
+    <a class="btn btn-success"style="margin:5px"  asp-area ="admin" asp-controller="Category" asp-action="Add"> افزودن گروه جدید </a>
+      <div class="box box-primary">
+        <div class="box-body p-0">
+          <table class="table table-bordered table-hover">
+             <thead>
+                 <tr>
+                           <th> #</th>
+                            <th>عنوان </th>
+                            <th> زیرگروه</th>
+                            <th> عملیات</th>
+                </tr>
+             </thead>
+              <tbody>
+                        @foreach (var item in Model.Where(u => u.ParentId == null))
+                        {
+                        <tr>
+                                <td>@Counter</td>
+                            <td>@item.Title</td>
+                            <td>
+                                @if(Model.Any(f=>f.ParentId==item.Id))
+                                {
+                                <ul>
+                                    @foreach (var SubCategory in Model.Where(u =>u.ParentId == item.Id))
+                                    {     
+
+                                        <li>@SubCategory.Title>
+                                                <a class="btn btn-info btn-sm" asp-area="admin" asp-controller="Category" asp-action="Edit" asp-route-id="@SubCategory.Id"> ویرایش </a>
+                                                </li>
+                                    }
+                                    </ul>
+                                }
+
+                             </td>
+                                    <td>
+                                <a class="btn btn-info btn-sm"  asp-area="admin" asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id">   ویرایش </a>
+                                    <a class ="btn btn-success btn-sm" asp-area= "admin" asp-controller="Category" asp-action="Add" asp-route-parentId="@item.Id"> افزودن زیر گروه </a>
+                                    </td>
+
+              </tr>
+
+                            Counter += 1;
+                        }
+              </tbody>
+          </table>
+
+
+
+         </div>
+        </div>
+        </section>

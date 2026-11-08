@@ -1,0 +1,32 @@
+version: '3.4'
+networks:
+   testapp:
+volumes:
+  AppSql:
+services:
+   application:
+    container_name: codeyad-blog-container
+    build:
+     context: .
+     dockerfile: CodeYad-Blog.Web/Dockerfile
+    ports:
+     - "5050:80" 
+    networks: 
+     - testapp
+
+   sql-server:
+    container_name: sqlserver2022
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports: 
+    - "1433:1433" 
+    networks:
+     - testapp
+    volumes:  
+      - AppSql:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=
+      - SA_PASSWORD=
+     
+
+
+   

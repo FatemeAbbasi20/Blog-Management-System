@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36203.30
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeYad-Blog.Web", "CodeYad-Blog.Web\CodeYad-Blog.Web.csproj", "{5D911B5B-4950-4C44-AC3F-0028C3238EAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeYad-Blog-DataLayer", "CodeYad-Blog-DataLayer\CodeYad-Blog-DataLayer.csproj", "{E10BD380-54BC-4265-82B5-9A774254187F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeYad-Blog-CoreLayer", "CodeYad-Blog-CoreLayer\CodeYad-Blog-CoreLayer.csproj", "{875A49B3-8BD9-4CF0-A46A-ED580CC2435C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D911B5B-4950-4C44-AC3F-0028C3238EAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D911B5B-4950-4C44-AC3F-0028C3238EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D911B5B-4950-4C44-AC3F-0028C3238EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D911B5B-4950-4C44-AC3F-0028C3238EAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E10BD380-54BC-4265-82B5-9A774254187F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E10BD380-54BC-4265-82B5-9A774254187F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E10BD380-54BC-4265-82B5-9A774254187F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E10BD380-54BC-4265-82B5-9A774254187F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{875A49B3-8BD9-4CF0-A46A-ED580CC2435C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{875A49B3-8BD9-4CF0-A46A-ED580CC2435C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{875A49B3-8BD9-4CF0-A46A-ED580CC2435C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{875A49B3-8BD9-4CF0-A46A-ED580CC2435C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10454ABE-09DC-4F37-8B0F-7CD9E41B6CC5}
+	EndGlobalSection
+EndGlobal
