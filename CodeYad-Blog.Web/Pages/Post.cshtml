@@ -5,7 +5,7 @@
     ViewData["Title"] = Model.Post.Title;
     var SiteUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
     var PostUrl = $"{SiteUrl}/post/{Model.Post.slug}";
-    var ShortDescription = Model.Post.Description.ConvertHtmlToText().Substring(0,200);
+    var ShortDescription = Model.Post.Description.ConvertHtmlToText();
     var ImageType =@System.IO.Path.GetExtension(Model.Post.ImageName).Replace(".","") ;
     var ImageUrl = Directiones.GetPostImage(Model.Post.ImageName);
 }
